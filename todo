@@ -1,0 +1,9 @@
+-show news
+-only show news that is trustworthy, aka shown by multiple news providers
+-break news into small messages, able to speed up + slow down messages
+-thumbs up / down news, used that data to show relevant news in the future
+-send a news article when user goes on facebook
+-request new news article
+-showing news sites over a vpn - useful for people in certain sitatuions
+-save your data vs loading from news site (people with internet.org?)
+-send news to mobile (twillo integration?)
