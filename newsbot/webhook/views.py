@@ -1,13 +1,8 @@
-import json
-import sys
-
-from flask import Flask, request
-import message_controller
-
-app = Flask(__name__)
+from flask import request
+from . import webhook
 
 
-@app.route('/', methods=['GET'])
+@webhook.route('/webhook', methods=['GET'])
 def verify():
     # when the endpoint is registered as a webhook, it must echo back
     # the 'hub.challenge' value it receives in the query arguments
@@ -20,8 +15,8 @@ def verify():
 
 
 
-@app.route('/', methods=['POST'])
-def webhook():
+@webhook.route('/', methods=['POST'])
+def processWebhook():
 
     # endpoint for processing incoming messaging events
 
@@ -34,12 +29,3 @@ def webhook():
             for messaging_event in entry["messaging"]:
                 message_controller.route(messaging_event)
     return "ok", 200
-
-
-def log(message):  # simple wrapper for logging to stdout on heroku
-    print(str(message))
-    sys.stdout.flush()
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
